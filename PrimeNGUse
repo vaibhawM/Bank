@@ -1,0 +1,18 @@
+
+<p-calendar [(ngModel)]="value" showTime="showTime" hourFormat="24" ></p-calendar>
+<span>{{ value | json }}</span>
+
+
+TS File 
+
+value: Date;
+
+
+App Module :
+Include CalenderModule
+
+
+
+
+
+
