@@ -1,0 +1,38 @@
+get Values from checkBox
+
+ts File
+
+import { FormBuilder, FormArray, FormControl, FormGroup } from '@angular/forms';
+myForm: FormGroup;
+constructor(private fb: FormBuilder){
+
+  }
+
+  ngOnInit() {
+    
+    this.myForm = this.fb.group({
+      useremail: this.fb.array([])
+    });
+    
+  }
+
+  onChange(platform:string, isChecked: boolean) {
+    const emailFormArray = <FormArray>this.myForm.controls.useremail;
+  
+    if(isChecked) {
+      emailFormArray.push(new FormControl(platform));
+    } else {
+      let index = emailFormArray.controls.findIndex(x => x.value == platform)
+      emailFormArray.removeAt(index);
+    }
+
+    console.log(emailFormArray);
+  }
+  
+  
+  html File
+  
+  
+  
+<pre>Form values: {{myForm.value | json}}</pre>
+  <input type="checkbox" (change)="onChange(game.platform, $event.target.checked)"/>
